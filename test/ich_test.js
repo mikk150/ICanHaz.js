@@ -30,6 +30,13 @@ test("renders parameterized templates", function() {
   equal(first(ich.test2({prey:'wabbits'}, raw(ich))), "<span>Be vewwy vewwy quiet, we're hunting wabbits.</span>");
 });
 
+test("can change mustache symbols",function () {
+   expect(2);
+   equal(first(ich.test3({type:'television'}, raw(ich))), "<p>This is a test of the television broadcast system.</p>");
+   equal(first(ich.test4({type:'television'}, raw(ich))), "<p>This is a test of the <% type %> broadcast system.</p>");
+});
+
+
 test("renders leading whitespace templates", function() {
   expect(1);
   notEqual(first(ich.trim({}, raw(ich))).indexOf("<span>Where's the BEEF!</span>"), -1);
@@ -60,7 +67,7 @@ test("renders partials", function() {
 test("renders partials added at runtime", function() {
   // partials example from the Mustache README
   ich.addTemplate('winnings2', "You just won ${{value}} (which is ${{taxed_value}} after tax)");
-  ich.addTemplate('welcome2', "<p>Welcome, {{name}}! {{>winnings2}}</p>");
+  ich.addTemplate('welcome2', "<p>Welcome, {{name}}! {{#winnings2}}{{>winnings2}}{{/winnings2}}</p>");
   expect(1);
   var view = {
       name: "Joe",
@@ -123,3 +130,4 @@ test("can add multiple templates at once", function () {
     equal(first(ich.first(obj, raw(ich))), '<p>first bob</p>');
     ok(first(ich.second(obj, raw(ich))), '<p>second bob</p>');
 });
+

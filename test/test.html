@@ -13,13 +13,19 @@
         <script id="test2" type="text/html">
             <span>Be vewwy vewwy quiet, we're hunting {{prey}}.</span>
         </script>
+        <script id="test3" type="text/html">
+            {{=<% %>=}}<p>This is a test of the <% type %> broadcast system.</p>
+        </script>
+        <script id="test4" type="text/html">
+            <p>This is a test of the <% type %> broadcast system.</p>
+        </script>
         <script id="trim" type="text/html">
-					  {{^beef}}
+                      {{^beef}}
             <span>Where's the BEEF!</span>
-						{{/beef}}
+                        {{/beef}}
         </script>
         <script id="welcome" type="text/html">
-            <p>Welcome, {{name}}! {{>winnings}}</p>
+            <p>Welcome, {{name}}! {{#winnings}}{{>winnings}}{{/winnings}}</p>
         </script>
         <script id="winnings" type="text/html">
             You just won ${{value}} (which is ${{taxed_value}} after tax)
@@ -27,6 +33,7 @@
         <script id="version" type="text/html">
             ICanHaz Tests? YES! You're testing v{{ version }}
         </script>
+
 
         <script src="../ICanHaz.js"></script>
         <script src="./ich_test.js"></script>
