@@ -619,6 +619,7 @@ More info at: http://icanhazjs.com
     var ich = {
         VERSION: "0.10.2",
         templates: {},
+        Mustache:Mustache,
 
         // grab jquery or zepto if it's there
         $: (typeof window !== 'undefined') ? window.jQuery || window.Zepto || null : null,
